@@ -1,0 +1,63 @@
+name: Erling Haaland
+shots: "43 in 10 games;25 on targets"
+G+A per 90: ~1.47
+What this tells us: |
+  Haaland is scoring at an elite rate:
+    13 goals in 10 league matches is outstanding.
+    His shot accuracy is strong (25 on target from 43 shots) and his involvement (G+A per 90 ~1.47) shows impact beyond just scoring.
+    The xG number suggests he is not just scoring from soft chances—he’s getting quality opportunities and converting many of them.
+
+Caveats: >
+  The numbers above are for league matches only; full-season totals (all competitions) may differ and are still evolving.
+  Some sources provide slightly different figures (e.g., 11 goals in 8 matches for league) due to how they count matches, minutes, or competitions.
+
+Goals_against_Dortmund: 2
+is_Best: true
+scores_bangers: yes
+instant: on
+laliga_won: null
+serieA_won: ~
+joined_ManCity: 2022-07-01
+
+teams_scored_against: -Arsenal
+  -Dortmund
+  -Bournemouth
+
+teams_didnt_score_against: [spurs, villa]
+
+trophies_with_city:
+  - name: Premier league
+    years: -2023
+      -2024
+  - name: Champions league
+    years: -2023
+
+Man_City:
+  players:
+    goalkeeper: donarumma
+    mid_fielders:
+      CAM: silva
+      central: Kovacic
+    creators:
+      left_wing: Doku
+      right_wing: Foden
+      wide: cherki
+  manager: guardiola
+
+Man_City_Squad: &Man_City
+  coaches: pep
+  striker: Haaland
+  reserve: trafford
+
+matchday_bench:
+  <<: *Man_City
+  others: injured players
+
+match_days: !!str 10
+won: !!int "6"
+
+players_name: !!set
+  ? Rodri
+  ? Gonzalez
+  ? Gvardiol
+  ? Nico
