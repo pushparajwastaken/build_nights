@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-function App() {
+function Button() {
   return (
     <div
       className="[perspective::100px] [transform-style:preserve-3d] h-screen w-screen bg-neutral-900 flex items-center justify-center"
@@ -48,4 +48,4 @@ function App() {
   );
 }
 
-export default App;
+export default Button;
