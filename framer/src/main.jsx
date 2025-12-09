@@ -4,9 +4,10 @@ import "./index.css";
 import App from "./Button.jsx";
 import Exit from "./Exit.jsx";
 import Variants from "./variants.jsx";
+import { Hooks } from "./hooks.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Variants />
+    <Hooks />
   </StrictMode>
 );
