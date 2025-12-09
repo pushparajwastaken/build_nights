@@ -63,5 +63,3 @@ function serveOrder(item: ChaiOrder | string) {
 type MasalaChai = { type: "Masala"; spicelevel: number };
 
 type Chai = "string" | MasalaChai;
-
-function isStringArray(arr: unknown): arr is string[] {}
