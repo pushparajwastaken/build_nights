@@ -5,9 +5,9 @@ import App from "./Button.jsx";
 import Exit from "./Exit.jsx";
 import Variants from "./variants.jsx";
 import { Hooks } from "./hooks.jsx";
-
+import Button from "./Button.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Hooks />
+    <Exit />
   </StrictMode>
 );
