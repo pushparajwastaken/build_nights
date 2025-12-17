@@ -3,8 +3,81 @@ import musafir from "./assets/yashraj.jpg";
 import rain from "./assets/haveyoueverseentherain.jpg";
 import aujla from "./assets/karanaujla.jpg";
 import bole from "./assets/bolechudiyan.jpg";
-const LayoutFramer = () => {};
-const cards = () => [
+
+import { useState } from "react";
+const LayoutFramer = () => {
+  const [current, setCurrent] = useState(null);
+  return (
+    <div className="py-10 bg-gray-200 min-h-screen font-mono relative">
+      {current && (
+        <div className="z-10 h-full fixed w-full inset-0 bg-black/40 backdrop-blur-sm">
+          {" "}
+        </div>
+      )}
+      {current && (
+        <div className="h-[540px] bg-white fixed inset-0 z-20 m-auto  w-72 rounded-2xl p-4 border border-neutral-200">
+          <img
+            src={current.src}
+            alt={current.title}
+            className="w-full aspect-square rounded-xl"
+          />
+          <div className="flex flex-col  justify-between items-start">
+            <div className="flex justify-between py-4 w-full items-start gap-2">
+              <div className="flex flex-col items-start gap-2">
+                <h2 className="font-bold text-xs tracking-tight text-black">
+                  {current.title}
+                </h2>
+                <p className="text-[10px] text-neutral-400">
+                  {current.description}
+                </p>
+              </div>
+              <a
+                href={current.ctaLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2 py-1 bg-green-500 rounded-full text-white text-xs"
+              >
+                {current.ctaText}
+              </a>
+            </div>
+            <div className="h-40 overflow-auto">{current.content()}</div>
+          </div>
+        </div>
+      )}
+      <div className="max-w-lg mx-auto flex flex-col gap-10">
+        {cards.map((card) => (
+          <button
+            onClick={() => {
+              setCurrent(card);
+            }}
+            key={card.title}
+            className="p-4 rounded-lg flex justify-between items-center bg-white border border-neutral-200 cursor-pointer"
+          >
+            <div className="flex gap-4 items-center">
+              <img
+                src={card.src}
+                alt={card.title}
+                className="h-14 aspect-square rounded-lg"
+              />
+              <div className="flex flex-col items-start gap-2">
+                <h2 className="font-bold text-xs tracking-tight text-black">
+                  {card.title}
+                </h2>
+                <p className="text-[10px] text-neutral-400">
+                  {card.description}
+                </p>
+              </div>
+            </div>
+            <div className="px-2 py-1 bg-green-400 rounded-full text-white text-xs">
+              {card.ctaText}
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+const cards = [
   {
     description: "Seedhe Maut",
     title: "Red",
