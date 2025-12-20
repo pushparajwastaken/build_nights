@@ -3,20 +3,53 @@ import musafir from "./assets/yashraj.jpg";
 import rain from "./assets/haveyoueverseentherain.jpg";
 import aujla from "./assets/karanaujla.jpg";
 import bole from "./assets/bolechudiyan.jpg";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "motion/react";
+const useOutsideClick = (callback) => {
+  const ref = useRef(null);
+  useEffect(() => {
+    const handleClick = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        callback();
+      }
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => {
+      document.removeEventListener("mousedown", handleClick);
+    };
+  }, [callback]);
+  return ref;
+};
 
-import { useState } from "react";
 const LayoutFramer = () => {
   const [current, setCurrent] = useState(null);
+  const ref = useOutsideClick(() => setCurrent(null));
   return (
-    <div className="py-10 bg-gray-200 min-h-screen font-mono relative">
+    <div className="py-10 bg-gray-200 min-h-screen font-mono relative ">
       {current && (
-        <div className="z-10 h-full fixed w-full inset-0 bg-black/40 backdrop-blur-sm">
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.3,
+          }}
+          className="z-10 h-full fixed w-full inset-0 bg-black/40 backdrop-blur-sm"
+        >
           {" "}
-        </div>
+        </motion.div>
       )}
       {current && (
-        <div className="h-[540px] bg-white fixed inset-0 z-20 m-auto  w-72 rounded-2xl p-4 border border-neutral-200">
-          <img
+        <motion.div
+          layoutId={`card-${current.title}`}
+          ref={ref}
+          className="h-[540px] overflow-hidden bg-white fixed inset-0 z-20 m-auto  w-72 rounded-2xl p-4 border border-neutral-200"
+        >
+          <motion.img
+            layoutId={`image-${current.title}`}
             src={current.src}
             alt={current.title}
             className="w-full aspect-square rounded-xl"
@@ -24,29 +57,52 @@ const LayoutFramer = () => {
           <div className="flex flex-col  justify-between items-start">
             <div className="flex justify-between py-4 w-full items-start gap-2">
               <div className="flex flex-col items-start gap-2">
-                <h2 className="font-bold text-xs tracking-tight text-black">
+                <motion.h2
+                  layoutId={`h2-${current.title}`}
+                  className="font-bold text-xs tracking-tight text-black"
+                >
                   {current.title}
-                </h2>
-                <p className="text-[10px] text-neutral-400">
+                </motion.h2>
+                <motion.p
+                  layoutId={`p-${current.title}`}
+                  className="text-[10px] text-neutral-400"
+                >
                   {current.description}
-                </p>
+                </motion.p>
               </div>
-              <a
+              <motion.a
+                layoutId={`a-${current.title}`}
                 href={current.ctaLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-2 py-1 bg-green-500 rounded-full text-white text-xs"
               >
                 {current.ctaText}
-              </a>
+              </motion.a>
             </div>
-            <div className="h-40 overflow-auto">{current.content()}</div>
+            <motion.div
+              initial={{
+                filter: "blur(10px)",
+                opacity: 0,
+              }}
+              animate={{
+                filter: "blur(0px)",
+                opacity: 1,
+              }}
+              transition={{
+                delay: 0.3,
+              }}
+              className="h-40 overflow-auto  [mask-image:linear-gradient(to_top,transparent_4%,black_50%)]"
+            >
+              {current.content()}
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       )}
       <div className="max-w-lg mx-auto flex flex-col gap-10">
         {cards.map((card) => (
-          <button
+          <motion.button
+            layoutId={`card-${card.title}`}
             onClick={() => {
               setCurrent(card);
             }}
@@ -54,24 +110,31 @@ const LayoutFramer = () => {
             className="p-4 rounded-lg flex justify-between items-center bg-white border border-neutral-200 cursor-pointer"
           >
             <div className="flex gap-4 items-center">
-              <img
+              <motion.img
+                layoutId={`image-${card.title}`}
                 src={card.src}
                 alt={card.title}
                 className="h-14 aspect-square rounded-lg"
               />
               <div className="flex flex-col items-start gap-2">
-                <h2 className="font-bold text-xs tracking-tight text-black">
+                <motion.h2
+                  layoutId={`h2-${card.title}`}
+                  className="font-bold text-xs tracking-tight text-black"
+                >
                   {card.title}
-                </h2>
-                <p className="text-[10px] text-neutral-400">
+                </motion.h2>
+                <motion.p
+                  layoutId={`p-${card.title}`}
+                  className="text-[10px] text-neutral-400"
+                >
                   {card.description}
-                </p>
+                </motion.p>
               </div>
             </div>
             <div className="px-2 py-1 bg-green-400 rounded-full text-white text-xs">
               {card.ctaText}
             </div>
-          </button>
+          </motion.button>
         ))}
       </div>
     </div>
