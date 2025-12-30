@@ -7,10 +7,10 @@ import Variants from "./variants.jsx";
 import { Hooks } from "./hooks.jsx";
 import LayoutFramer from "./LayoutFramer.jsx";
 import Button from "./Button.jsx";
-
 import { AnimatedText } from "./AnimatedText.jsx";
+import { AnimatedText2 } from "./AnimatedText2.jsx";
 createRoot(document.getElementById("root")).render(
   <div className="flex items-center justify-center min-h-screen bg-black">
-    <AnimatedText />
+    <AnimatedText2 />
   </div>
 );
