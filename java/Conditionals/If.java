@@ -6,7 +6,7 @@ public class If{
         } else if (Salary<15000 ){
             System.out.println("Salary Not Okay");
         }else{
-            System.out.println("Salary bad");
+            System.out.println("Salary bad");  
         }
     }
 }
