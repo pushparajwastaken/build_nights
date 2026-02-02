@@ -1,0 +1,4 @@
+import crypto from "crypto";
+
+const hash = crypto.createHash("sha256").update("Lavanya").digest("hex");
+console.log(hash);
