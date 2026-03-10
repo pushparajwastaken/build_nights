@@ -34,4 +34,69 @@ System.out.println(details+node.getValue());
 display(node.left,"Left child of "+node.getValue()+ " : ");
 display(node.right,"Right child of "+node.getValue()+ " : ");
   }
+public void insert(int value){
+ root= insert( value,root);
+
+}
+
+private Node insert(int value,Node node){
+  if(node==null){
+     node=new Node(value);
+     return node;
+  }
+  node.height=Math.max(height(node.left),height(node.right))+1;
+if(value<node.value){
+  node.left=insert(value,node.left);
+}
+if(value>node.value){
+  node.right=insert(value,node.right);
+}
+return node;
+}
+public boolean balanced(){
+  return balanced(root);
+}
+private boolean balanced(Node node){
+  if(node == null)return true;
+  return Math.abs(height(node.left)-height(node.right))<=1 && balanced(node.left) && balanced(node.right) ;
+}
+
+public void populate(int []nums){
+  for(int i=0;i<nums.length;i++){
+    this.insert(nums[i]);
+  }
+}
+public void populateSorted(int []nums){
+  populateSorted(nums,0,nums.length);
+}
+private void populateSorted(int[]nums,int start,int n){
+  if(start>=n){
+    return ;
+  }
+  int mid=(start +n)/2;
+  this.insert(nums[mid]);
+  populateSorted(nums,start,mid);
+  populateSorted(nums,mid+1,n);
+  //time complexity:-n(logn)
+
+}
+
+//Preorder Traversal(ro-le-ri)-used for evaluating expression or making a copy or serialization
+public void preOrder(){
+  preOrder(root);
+}
+private void preOrder(Node node){
+  if(node==null )return;
+  System.out.println(node.value+" ");
+  preOrder(node.left);
+  preOrder(node.right);
+}
+//inorder(le-ro-ri)-in bst we get sorted order
+//postorder(le-ri-ro)-when we need to delete from binary tree
+public static void main(String[] args) {
+  BST bst=new BST();
+  int[]nums={233,23,24,4,343,5,54,54,56,56,6,5656};
+  bst.populate(nums);
+  bst.display();
+}
 }
